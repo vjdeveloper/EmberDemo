@@ -1,0 +1,45 @@
+<div class="well">
+    {{#em-form model=model submit_button=false}}
+        {{em-input property="trainNumber" cid="trainpicker" label="Train Number" placeholder="Please enter Train Number."}}
+        {{!-- {{em-input property="trainNumber" label="Last Name" placeholder="Please enter last name."}} --}}
+        {{!-- {{input type="text" value=trainNumber class="trainpicker form-control" placeholder="First name" }} --}}
+
+        <div class="form-actions">
+            <input {{bind-attr disabled=isntValid}} type="submit" {{action 'getTimeTable'}} class="btn btn-primary" value="Get Time Table">
+        </div>
+
+    {{/em-form}}
+</div>
+{{#if timeTableresult}}
+{{ember-table
+  hasFooter=false
+  numRows=100
+  columns=tableColumns
+  content=tableContent
+}}
+{{/if}}
+{{!-- {{#if timeTableresult}}
+<table class="table-striped table-hover">
+<tr class="active">
+ <th>Station Name</th>
+ <th>Station Code</th>
+ <th>Arr.</th>
+ <th>Dep.</th>
+ <th>Platform Number</th>
+ <th>Distance From Source</th>
+</tr>
+{{#each item in timeTable}}
+{{#if item.stop}}
+  <tr>
+   <td>{{item.station_name}}</td>
+   <td>{{item.station_code}}</td>
+   <td>{{minute-houre item.sta_min}}</td>
+   <td>{{minute-houre item.std_min}}</td>
+   <td>{{item.platform_number}}</td>
+   <td>{{item.distance_from_source}}</td>
+  </tr>
+  {{/if}}
+{{/each}}
+</table>
+{{/if}}
+ --}}
